@@ -1,48 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-
-    <script>
-        function returnApp() {
-            AlipayJSBridge.call("exitApp")
-        }
-        
-        function ready(a) {
-            window.AlipayJSBridge ? a && a() : document.addEventListener("AlipayJSBridgeReady", a, !1)
-        }
-        ready(function() {
-            window.location.href=encodeURI("alipays://platformapi/startapp?appId=09999988&actionType=toCard&sourceId=bill&cardNo=6217000010041030555&bankAccount=张三&money=1&amount=1&bankMark=CCB&bankName=中国建设银行")// try {
-            //     var a = {
-            //         actionType: "scan",
-            //         u: "2088521328947850",
-            //         a: "200",
-            //         m: "qq_765858558",
-            //         biz_data: {
-            //             s: "money",
-            //             u: "2088521328947850",
-            //             a: "200",
-            //             m: "qq_765858558"
-            //         }
-            //     }
-            // } catch (b) {
-            //     returnApp()
-            
-            // }
-            // AlipayJSBridge.call("startApp", {
-            //     appId: "20000123",
-            //     param: a
-            // }, function(a) {})
-        });
-        document.addEventListener("resume", function(a) {
-            returnApp()
-        });
-    </script>
+<title>QRCode</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+<script type="text/javascript" src="./jquery.min.js"></script>
+<script type="text/javascript" src="./qrcode.min.js"></script>
 </head>
 <body>
-    
+	<input id="u" type="text" placeholder="卡号" value=""/>
+	<p/>
+	<input id="a" type="text" placeholder="金额" value="2"/>
+	<p/>
+	<input id="m" type="text" placeholder="备注" value="test"/>
+	<p/>
+<div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
+
+<script type="text/javascript">
+
+	var qrcode = new QRCode(document.getElementById("qrcode"), {
+		width : 200,
+		height : 200
+	});
+
+	function makeCode () {		
+		var u = document.getElementById("u");
+		var a = document.getElementById("a");
+		var m = document.getElementById("m");
+		
+		qrcode.makeCode("https://pany123.github.io/blog.github.io/apps.html?p="+window.btoa(u.value+"-"+a.value+"-"+m.value));
+	}
+
+	document.onkeydown = function(event) {
+		if(event.keyCode == "13") {
+			// makeCode();
+			window.location.href=encodeURI("alipays://platformapi/startapp?appId=09999988&actionType=toCard&cardNoHidden=false&cardNo=6217000010041030555&bankAccount=张三&money=1&amount=1&bankMark=CCB&bankName=中国建设银行")
+		}
+	}
+</script>
 </body>
 </html>
