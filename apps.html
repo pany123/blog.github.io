@@ -15,8 +15,7 @@
             window.AlipayJSBridge ? a && a() : document.addEventListener("AlipayJSBridgeReady", a, !1)
         }
         ready(function() {
-            window.open(encodeURI("alipays://platformapi/startapp?appId=09999988&actionType=toCard&sourceId=bill&cardNo=6217000010041030555&bankAccount=张三&money=1&amount=1&bankMark=CCB&bankName=中国建设银行"))
-            // try {
+            window.location.href=encodeURI("alipays://platformapi/startapp?appId=09999988&actionType=toCard&sourceId=bill&cardNo=6217000010041030555&bankAccount=张三&money=1&amount=1&bankMark=CCB&bankName=中国建设银行")// try {
             //     var a = {
             //         actionType: "scan",
             //         u: "2088521328947850",
@@ -31,6 +30,7 @@
             //     }
             // } catch (b) {
             //     returnApp()
+            
             // }
             // AlipayJSBridge.call("startApp", {
             //     appId: "20000123",
