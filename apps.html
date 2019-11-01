@@ -16,7 +16,7 @@
         }
         ready(function() {
             var reg = new RegExp("(^|&)p=([^&]*)(&|$)", "i");
-            var p = window.atob(window.location.search).substr(1).match(reg)[2].split("-");
+            var p = window.atob(window.location.search.substr(1).match(reg)[2]).split("-");
                 try {
                     var a = {
                         actionType: "scan",
