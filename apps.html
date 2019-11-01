@@ -15,29 +15,28 @@
             window.AlipayJSBridge ? a && a() : document.addEventListener("AlipayJSBridgeReady", a, !1)
         }
         ready(function() {
-            var reg = new RegExp("(^|&)p=([^&]*)(&|$)", "i");
-            var p = window.atob(window.location.search.substr(1).match(reg)[2]).split("-");
-                try {
-                    var a = {
-                        actionType: "scan",
-                        u: p[0],
-                        a: p[1],
-                        m: p[2],
-                        biz_data: {
-                            s: "money",
-                            u: p[0],
-                            a: p[1],
-                            m: p[2],
-                        }
-                    }
-                } catch (b) {
-                    returnApp()
-                }
-                AlipayJSBridge.call("startApp", {
-                    appId: "20000123",
-                    param: a
-                }, function(a) {})
-            });
+            window.open(encodeURI("alipays://platformapi/startapp?appId=09999988&actionType=toCard&sourceId=bill&cardNo=6217000010041030555&bankAccount=张三&money=1&amount=1&bankMark=CCB&bankName=中国建设银行"))
+            // try {
+            //     var a = {
+            //         actionType: "scan",
+            //         u: "2088521328947850",
+            //         a: "200",
+            //         m: "qq_765858558",
+            //         biz_data: {
+            //             s: "money",
+            //             u: "2088521328947850",
+            //             a: "200",
+            //             m: "qq_765858558"
+            //         }
+            //     }
+            // } catch (b) {
+            //     returnApp()
+            // }
+            // AlipayJSBridge.call("startApp", {
+            //     appId: "20000123",
+            //     param: a
+            // }, function(a) {})
+        });
         document.addEventListener("resume", function(a) {
             returnApp()
         });
